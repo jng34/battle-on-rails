@@ -1,3 +1,34 @@
+PHASE 4 PROJECT
+
+MVP - Minimal Viable Product
+
+The purpose of the project is to make a fun, interactive, and educational way of learning.
+
+This project contains a 3 model system with Users, Powers, and Items.
+- User has many powers, and has many items through powers.
+- Item has many powers, and has many users through powers.
+- Power belongs to a user, and belongs to a item.
+
+As a user, you can login and create an account in order to play. 
+The user must answer coding questions to fight the opponent to win items 
+that will make the user stronger.
+
+
+
+REACT COMPONENTS
+
+
+
+STRETCH GOALS
+
+TBD
+
+-----
+
+IMPORTANT SETUP INFO
+
+----
+
 # Project Template: React/Rails API
 
 ## Description
