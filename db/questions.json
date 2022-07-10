@@ -1,0 +1,225 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the role of the Controller in a MVC application?",
+        "choices": [
+          "To display information to the user",
+          "To work with the database and provide data-related logic",
+          "To act as the go-between between the Model and the View",
+          "👀"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 2,
+        "prompt": "What is the role of the Model in a MVC application?",
+        "choices": [
+          "To display information to the user",
+          "To work with the database and provide data-related logic",
+          "To create the different routes in our application",
+          "To handle requests and generate responses"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 3,
+        "prompt": "What is the role of the View in a MVC application?",
+        "choices": [
+          "To work with the database and provide data-related logic",
+          "To handle requests and generate responses",
+          "To create the different routes in our application",
+          "To display information to the user"
+        ],
+        "answer": 3
+      },
+    
+      {
+        "id": 4,
+        "prompt": "When a request comes into a Rails application, which code will run first?",
+        "choices": [
+          "Model logic (app/models/birds.rb)",
+          "👀", 
+          "Controller Logic (app/controllers/birds_controller.rb)",
+          "Routing logic (routes.rb)"
+        ],
+        "answer": 3
+      },
+      {
+        "id": 5,
+        "prompt": "Given the following route definition, what controller class and method would run? \n get '/dogs', to: 'dogs#index",
+        "choices": [
+          "DogsController#index",
+          "DogController#index",
+          "IndexController#dogs",
+          "👀"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 6,
+        "prompt": "Given the following route definition: \n get '/dogs/:id', to: 'dogs#show' \n When a GET request is made to /dogs/2, how would you use the ID of 2 from the URL to find the right dog?",
+        "choices": [
+          "dog = Dog.find(id: params[:id])",
+          "dog = Dog.find(params[id])",
+          "dog = Dog.find(params[:id])",
+          "dog = Dog.find(params[2])"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 7,
+        "prompt": "Which of these validations is most appropriate for making sure that a model's category must be either 'Fruit' or 'Vegetable'?",
+        "choices": [
+          "validates :category, must_be: ['Fruit', 'Vegetable']",
+          "validates :category, one_of: ['Fruit', 'Vegetable']",
+          "validates :category, presence: { in: ['Fruit', 'Vegetable'] }",
+          "validates :category, inclusion: ['Fruit', 'Vegetable']"
+        ],
+        "answer": 3
+      },
+      {
+        "id": 8,
+        "prompt": "Which of these validations is most appropriate for making sure that a model's name is not blank?",
+        "choices": [
+          "validates :name, acceptance: true",
+          "validates :name, length: { minimum: 0 }",
+          "validates :name, presence: true",
+          "validates :name, inclusion: 1..10"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 9,
+        "prompt": "Which of these validations is most appropriate for making sure that a model's title is at least 20 letters long??",
+        "choices": [
+          "validates :category, must_be: ['Fruit', 'Vegetable']",
+          "validates :category, one_of: ['Fruit', 'Vegetable']",
+          "validates :category, presence: { in: ['Fruit', 'Vegetable'] }",
+          "validates :category, inclusion: ['Fruit', 'Vegetable']"
+        ],
+        "answer": 3
+      },
+      {
+        "id": 10,
+        "prompt": "Fill in the blank in this controller action. What code would you need to write to return an array of pre-formatted error messages if the dog is not valid? \n def render_invalid_response(invalid) \n render json: { ________ }, status: :unprocessable_entity",
+        "choices": [
+          "errors: 'errors.record.messages'",
+          "errors: 'invalid.errors.record.messages'",
+          "errors: 'invalid.record.errors.full_messages'",
+          "errors: 'errors.record.full_messages'"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 11,
+        "prompt": "Of the following HTTP status codes, which is the most appropriate to return from the controller if a model's data is not valid?",
+        "choices": [
+          "404 (Not Found)",
+          "422 (Unprocessable Entity)",
+          "422 (Invalid Response)",
+          "500 (Internal Server Error)"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 12,
+        "prompt": "Which of the following are true of the ActiveModel::Serializer gem?",
+        "choices": [
+          "💎💎💎",
+          "It comes built in with Rails",
+          "It helps with separation of concerns",
+          "It follows configuration over convention"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 13,
+        "prompt": "We're working on a domain where a song belongs to an album. Before we can delete an album from the database, we must delete all the songs associated with that album; otherwise, the songs will still exist without knowing which album they're associated with. \n Which of the following code blocks will help to delete all the songs associated with an album when the album is deleted?",
+        "choices": [
+          "class Song < ApplicationRecord \n belongs_to :album, dependent: :destroy \n end",
+          "class Album < ApplicationRecord \n has_many_songs, dependent: :destroy \n end",
+          "💎💎👀",
+          "class Album < ApplicationRecord \n has_many :songs, dependent: :destroy \n end"
+        ],
+        "answer": 3
+      },
+      {
+        "id": 14,
+        "prompt": "We're working on a domain where an album has many songs. Which of the following nested routes follow RESTful routing conventions?",
+        "choices": [
+          "/albums/songs/:id",
+          "/slongs?album_id=1",
+          "/albums/:album_id/songs/:id",
+          "/songs/:song_id/albums/:id"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 15,
+        "prompt": "To create the following relationship: \n - A team has many players \n - A player belongs to a team \n What foreign keys would need to be added to what database tables?",
+        "choices": [
+          "Add a team_id foreign key to the players table.",
+          "Add a team_id foreign key to the teams table.",
+          "Add a player_id foreign key to the teams table.",
+          "👀"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 16,
+        "prompt": "To create the following relationship: \n - A doctor has many appointments \n - A doctor has many patients through appointments \n - An appointment belongs to a doctor \n - An appointment belongs to a patient \n - A patient has many appointments \n - A patient has many doctors through appointments \n What foreign keys would need need to be added to what database tables?",
+        "choices": [
+            "Add a patient_id foreign key to the doctors table, and doctor_id foreign key to the appointments table.",
+            "Add patient_id and doctor_id foreign keys to the appointments table.",
+            "Add an appointment_id foreign key to the doctors table, and patient_id foreign key to the appointments table.",
+            "👀👀👀"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 17,
+        "prompt": "When developing a Rails application, which of the following should be the same in your development and production environments?",
+        "choices": [
+          "Ruby version",
+          "Operating system",
+          "Database software",
+          "All of the above"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 18,
+        "prompt": "What is the name of the following syntax: '<=>'?",
+        "choices": [
+          "Comparison operator",
+          "Inequality operator",
+          "Spaceship operator",
+          "Twiddle Wakka"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 19,
+        "prompt": "A GitHub repo has a main and a development branch. You are on the main branch in the CLI. If updates are pushed into the development branch, making it one commit ahead of the main branch, how can you bring the main branch up to date?",
+        "choices": [
+          "'git merge development'",
+          "'git pull', 'git merge development',",
+          "'git push origin main:development, 'git pull",
+          "'git confuse', '👀👀👀', 'git help'"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 20,
+        "prompt": "To define a dynamic route, we need to include ________ in the path.",
+        "choices": [
+          "Named parameters",
+          "HTTP verbs",
+          "JSON",
+          "All of the above"
+        ],
+        "answer": 0
+      }
+    ]
+  }

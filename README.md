@@ -1,6 +1,8 @@
-PHASE 4 PROJECT
+PHASE 4 PROJECT "Battle on RAILS"
 
 MVP - Minimal Viable Product
+
+(see models.drawio.svg file)
 
 The purpose of the project is to make a fun, interactive, and educational way of learning.
 
@@ -17,7 +19,7 @@ that will make the user stronger.
 
 REACT COMPONENTS
 
-
+(see components.drawio.svg file)
 
 STRETCH GOALS
 
