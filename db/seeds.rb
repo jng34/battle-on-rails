@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u1 = User.create(name: 'Luke',profile_img: 'https://media.cdn.adultswim.com/uploads/20210914/219141616186-1910281358343-RAM.jpg' password_digest: 'password')
-u2 = User.create(name: 'Peter',profile_img: 'https://media.cdn.adultswim.com/uploads/20210914/219141616186-1910281358343-RAM.jpg' password_digest: 'password')
+u1 = User.create(name: 'Luke', profile_img: 'https://media.cdn.adultswim.com/uploads/20210914/219141616186-1910281358343-RAM.jpg', password_digest: 'password')
+u2 = User.create(name: 'Peter', profile_img: 'https://media.cdn.adultswim.com/uploads/20210914/219141616186-1910281358343-RAM.jpg', password_digest: 'password')
 
 i1 = Item.create(name: "Sword", img_url: "https://freesvg.org/img/Anonymous-katana.png", description:"the sword of King James")
 i2 = Item.create(name: "Cap", img_url: "http://cdn.shopify.com/s/files/1/0354/5271/5148/products/20957832_03_1200x630.jpg?v=1643649658", description:"Mark's cap")
@@ -16,6 +16,6 @@ i5 = Item.create(name: "Hand Sanitizer", img_url: "https://upload.wikimedia.org/
 
 Power.create(name: "Poke", str: 1, hp: 2, description: "poking motions", user_id: u1.id, item_id: i1.id)
 Power.create(name: "Headbutt", str: 2, hp: 1, description: "head to butt motions", user_id: u1.id, item_id: i2.id)
-Power.create(name: "Push", str: 1, hp: 1, description: "Pushing", user_id: u2.id, item_id: u3.id)
+Power.create(name: "Push", str: 1, hp: 1, description: "Pushing", user_id: u2.id, item_id: i3.id)
 Power.create(name: "Slap", str: 1, hp: 1, description: "Swinging", user_id: u2.id, item_id: i4.id)
 Power.create(name: "Sanitize", str: 0, hp: 1, description: "Killing germs", user_id: u1.id, item_id: i5.id)

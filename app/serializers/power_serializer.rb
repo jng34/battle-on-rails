@@ -1,3 +1,8 @@
 class PowerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :str, :hp, :description, :user_id, :item_id
+  attributes :id, :name, :str, :hp, :description, :item
+
+  def items
+    self.object.item
+  end
+  
 end

@@ -30,7 +30,7 @@ function UserForm() {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => console.log(user));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -65,9 +65,11 @@ function UserForm() {
                 </div>
 
                 <button type="submit" className="btn btn-primary" onSubmit={handleLoginSubmit}>Sign in</button>
-                {errors.map((err) => (
-                    <Error key={err}>{err}</Error>
-                ))}
+                <ul>
+                {errors.map((err) => 
+                    <li>{err}</li>
+                )}
+                </ul>
             </form>
             <div className="dropdown-divider"></div>
             <a className="dropdown-item" href="www.google.com">Don't have an account? Sign up</a>
