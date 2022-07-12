@@ -34,7 +34,7 @@ function SignUpForm() {
                 setPassword("")
                 setPasswordConfirmation("")
             } else {
-                res.json().then((err) => console.log(err.errors));
+                res.json().then((err) => setErrors(err.errors));
             }
             
         });
@@ -42,27 +42,64 @@ function SignUpForm() {
 
   return (
     <div>
-        SignUpForm 
-        <br /><br />
-        <form onSubmit={handleSubmitSignUp}>
-            <label htmlFor='name'>Name: </label>  
-                <input type='text' value={name} placeholder='Name' onChange={(e) => setName(e.target.value)}/>  
-                <br />
-            <label htmlFor='profilePic'>Profile Pic: </label>  
-                <input type='text' value={profileImg} placeholder='Image URL' onChange={(e) => setProfileImg(e.target.value)}/>  
-                <br />
-            <label htmlFor='password'>Password: </label>
-                <input type='password' value={password} autoComplete="current-password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}/>  
-                <br />
-            <label htmlFor='password'>Password Confirmation: </label>    
-                <input type='password' value={passwordConfirmation} autoComplete="current-password" placeholder='Retype Password' onChange={(e) => setPasswordConfirmation(e.target.value)}/> 
-                <br />
-                <br />
-            <button className="btn btn-primary" type='submit'>Submit</button>
-            {errors.map((err) => (
-                <p key={err}>{err}</p>
-            ))}
-        </form>    
+        <div className="card dropdown-menu" style={{width: "25rem", margin: "auto"}}>
+            <form className="px-4 py-3" onSubmit={handleSubmitSignUp}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input 
+                      type="text"
+                      className="form-control" 
+                      autoComplete="off"
+                      value={name}
+                      placeholder="Name" 
+                      onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Profile Pic</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      autoComplete="off"
+                      placeholder="Image URL" 
+                      value={profileImg}
+                      onChange={(e) => setProfileImg(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password</label>
+                    <input 
+                      type="password" 
+                      className="form-control" 
+                      autoComplete="current-password"
+                      placeholder="Password" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password Confirmation</label>
+                    <input 
+                      type="password" 
+                      className="form-control" 
+                      autoComplete="current-password"
+                      placeholder="Password Confirmation" 
+                      value={passwordConfirmation}
+                      onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Sign Up</button>
+                <br /><br />
+                {errors.map((err) => (
+                  <p key={err} style={{color: "red"}}>{err}</p>
+                 ))}
+            </form>
+        </div>   
+        <br />
+            <p>
+                Don't have an account? &nbsp;
+                <a href='/login'>Log In</a>
+            </p> 
     </div>
   )
 }
