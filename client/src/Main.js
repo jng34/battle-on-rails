@@ -1,25 +1,25 @@
 import React from 'react';
-import BattleField from 'BattleField';
+// import BattleField from 'BattleField';
 
 
 function Main() {
 
-    const [userData, setUserData] = useState([]);
+    // const [userData, setUserData] = useState([]);
   
 
-    useEffect(() => {
-      fetchUsers()
-    }, []);
+    // useEffect(() => {
+    //   fetchUsers()
+    // }, []);
   
-    function fetchUsers() {
-      return fetch('/users')
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
+    // function fetchUsers() {
+    //   return fetch('/users')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       console.log(data);
   
-          setUserData(data);
-        })
-    }
+    //       setUserData(data);
+    //     })
+    // }
     return (
         <div >
             Main page
