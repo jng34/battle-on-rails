@@ -5,20 +5,23 @@ function QuestionCard() {
 
     const questionsArr = questions.questions
     const randomNum = Math.floor(Math.random()*questionsArr.length + 1)
-
-    console.log(questions.questions)
-
-    const prompts = questions.questions.map((q) => (
-        <p key={q.id}>{q.prompt}</p>
-    ))
-    const answerChoices = questions.questions.map(q => q.choices.map((ans) => (
-        <p>{ans}</p>
-    )))
+    console.log(questionsArr)
+    console.log(randomNum)
+    const randomQuestion = questionsArr.filter((q) => q.id === randomNum)
+    const prompt = randomQuestion.prompt
+    const answerChoices = randomQuestion.choices
   return (
-    <div>
-        {/* {prompts} */}
-        {answerChoices}
-    </div>
+        <div>
+            <div className="card">
+                <div className="card-header">
+                    Question 
+                </div>
+                <div className="card-body">
+                    <p className="card-title">{prompt}</p>
+                    <p className="card-text">{answerChoices}</p>
+                </div>
+            </div>
+        </div>
   )
 }
 

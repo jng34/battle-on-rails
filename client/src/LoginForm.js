@@ -9,7 +9,6 @@ function LoginForm() {
 
     function handleLoginSubmit(e) {
         e.preventDefault();
-        console.log(e)
         setErrors([])
         setIsLoading(true);
         fetch("/login", {
@@ -60,8 +59,10 @@ function LoginForm() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary" >Sign in</button>
-                <br /><br />
+                {/* <button type="submit" className="btn btn-primary" >Sign in</button> */}
+                <div class="d-grid gap-2">
+                  <button type="submit" className="btn btn-primary">Sign in</button>
+                </div>
                 {errors.map((err) => (
                   <p key={err} style={{color: "red"}}>{err}</p>
                  ))}
