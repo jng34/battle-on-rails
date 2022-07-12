@@ -4,9 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
 import Main from './Main';
-import UserForm from './UserForm';
+import Login from './Login';
 import BattleField from './BattleField';
-import About from './About';
+import AllUsers from './AllUsers';
 
 function App() {
   
@@ -22,11 +22,11 @@ function App() {
           <Route exact path="/battle">
             <BattleField />
           </Route>
-          <Route exact path="/about">
-            <About />
+          <Route exact path="/users">
+            <AllUsers />
           </Route>
-          <Route exact path="/user">
-            <UserForm />
+          <Route exact path="/login">
+            <Login />
           </Route>
         </Switch>
     </div>

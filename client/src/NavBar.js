@@ -28,7 +28,7 @@ function NavBar() {
           background: "skyblue",
         }}
       >
-        HOME
+        MAIN
       </NavLink>
       <NavLink
         to="/battle"
@@ -41,17 +41,17 @@ function NavBar() {
         BATTLE
       </NavLink>
       <NavLink
-        to="/about"
+        to="/users"
         exact
         style={linkStyles}
         activeStyle={{
           background: "skyblue",
         }}
       >
-        ABOUT
+        ALL USERS
       </NavLink>
       <NavLink
-        to="/user"
+        to="/login"
         exact
         style={linkStyles}
         activeStyle={{

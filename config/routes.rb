@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  # resources :items
-  # resources :powers
+  resources :items
+  resources :powers
   resources :users, only: [:index, :update, :destroy]
 
   post '/signup', to: 'users#create'

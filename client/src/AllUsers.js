@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-function About() {
+function AllUsers() {
     return (
         <div className='text-center'>
-            About
+            AllUsers
         </div>
     )
 }
 
-export default About;
+export default AllUsers;
