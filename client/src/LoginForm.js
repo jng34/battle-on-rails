@@ -9,7 +9,6 @@ function LoginForm() {
 
     function handleLoginSubmit(e) {
         e.preventDefault();
-        console.log(e)
         setErrors([])
         setIsLoading(true);
         fetch("/login", {
@@ -26,7 +25,7 @@ function LoginForm() {
             setName("")
             setPassword("")
           } else {
-            r.json().then((err) => console.log(err.errors));
+            r.json().then((err) => setErrors(err.errors));
           }
         });
     }
@@ -35,7 +34,8 @@ function LoginForm() {
   
 
     return (
-        <div className="card dropdown-menu" style={{width: "25rem"}}>
+      <div>
+        <div className="card dropdown-menu" style={{width: "25rem", margin: "auto"}}>
             <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>
@@ -59,13 +59,21 @@ function LoginForm() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-
-                <button type="submit" className="btn btn-primary" >Sign in</button>
+                {/* <button type="submit" className="btn btn-primary" >Sign in</button> */}
+                <div class="d-grid gap-2">
+                  <button type="submit" className="btn btn-primary">Sign in</button>
+                </div>
                 {errors.map((err) => (
-                  <p key={err}>{err}</p>
+                  <p key={err} style={{color: "red"}}>{err}</p>
                  ))}
             </form>
         </div>
+        <br />
+            <p>
+                Don't have an account? &nbsp;
+                <a href='/signup'>Sign Up</a>
+            </p>
+      </div>
     )
 }
 
