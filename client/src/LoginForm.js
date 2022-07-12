@@ -2,26 +2,10 @@ import { React, useState } from 'react';
 
 
 function LoginForm() {
-    // const [loginInfo, setLoginInfo] = useState({
-    //     username: "",
-    //     password: ""
-    // })
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
-    // function handleLoginInfo(e) {
-    //     // console.log(e.target.id)
-    //     const { name, value } = e.target
-    //     const userLogin = {
-    //         ...loginInfo, [name]: value
-    //     }
-    //     setLoginInfo(userLogin)
-    // }
-    console.log(name)
-    console.log(password)
-  
 
     function handleLoginSubmit(e) {
         e.preventDefault();
