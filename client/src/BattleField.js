@@ -3,7 +3,7 @@ import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
-function BattleField() {
+function BattleField({ user }) {
     return (
         <div>
             Battlefield
