@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import questions from './questions.json'
 
 
@@ -6,6 +6,12 @@ function QuestionCard() {
     const [guess, setGuess] = useState(null)
 
     const questionsArr = questions.questions
+    function randomizer() {
+        return Math.floor(Math.random()*questionsArr.length + 1)
+    }
+
+  
+
     const randomNum = Math.floor(Math.random()*questionsArr.length + 1)
     const randomQuestion = questionsArr.filter((q) => q.id === randomNum)
     const prompt = randomQuestion[0].prompt
@@ -16,6 +22,7 @@ function QuestionCard() {
     function handleSelectAns(e) {
         setGuess(parseInt(e.target.value))
     }
+    console.log(guess)
     
     function handleAnswerChoice(e) {
         e.preventDefault();
