@@ -1,12 +1,16 @@
-import {React, useState} from 'react'
+import {React, useState} from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
-function SignUpForm() {
+function SignUpForm({ user, onLogin }) {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [profileImg, setProfileImg] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+
+    const { id } = useParams()
+    const history = useHistory();
 
     function handleSubmitSignUp(e) {
         e.preventDefault();
@@ -27,11 +31,12 @@ function SignUpForm() {
         .then((res) => {
             setIsLoading(false);
             if (res.ok) {
-                res.json().then((user) => console.log(user));
+                res.json().then((user) => onLogin(user));
                 setName("")
                 setProfileImg("")
                 setPassword("")
                 setPasswordConfirmation("")
+                history.push(`/profile/${id}`)
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }
@@ -41,7 +46,7 @@ function SignUpForm() {
 
   return (
     <div>
-        <div className="card dropdown-menu" style={{width: "25rem", margin: "auto"}}>
+        <div className="card text-start border border-success" style={{width: "25rem", margin: "auto"}}>
             <form className="px-4 py-3" onSubmit={handleSubmitSignUp}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>
@@ -50,7 +55,7 @@ function SignUpForm() {
                       className="form-control" 
                       autoComplete="off"
                       value={name}
-                      placeholder="Name" 
+                      placeholder="name" 
                       onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -60,7 +65,7 @@ function SignUpForm() {
                       type="text" 
                       className="form-control" 
                       autoComplete="off"
-                      placeholder="Image URL" 
+                      placeholder="image url" 
                       value={profileImg}
                       onChange={(e) => setProfileImg(e.target.value)}
                     />
@@ -71,7 +76,7 @@ function SignUpForm() {
                       type="password" 
                       className="form-control" 
                       autoComplete="current-password"
-                      placeholder="Password" 
+                      placeholder="password" 
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -82,25 +87,27 @@ function SignUpForm() {
                       type="password" 
                       className="form-control" 
                       autoComplete="current-password"
-                      placeholder="Password Confirmation" 
+                      placeholder="confirm password" 
                       value={passwordConfirmation}
                       onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
                 </div>
                 {/* <button type="submit" className="btn btn-primary">Sign Up</button> */}
                 <div class="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary">Sign Up</button>
+                  <button type="submit" className="btn btn-primary">SIGN UP</button>
                 </div>
+
                 {errors.map((err) => (
                   <p key={err} style={{color: "red"}}>{err}</p>
                  ))}
+                <br />
+                <p className="text-center">
+                    Already have an account? &nbsp;
+                    <a href='/login'>Log In</a>
+                </p> 
             </form>
         </div>   
         <br />
-            <p>
-                Don't have an account? &nbsp;
-                <a href='/login'>Log In</a>
-            </p> 
     </div>
   )
 }

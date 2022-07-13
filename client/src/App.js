@@ -1,5 +1,6 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
@@ -9,6 +10,8 @@ import BattleField from './BattleField';
 import AllUsers from './AllUsers';
 import SignUpForm from './SignUpForm';
 import  { useState, useEffect } from 'react'
+import UserProfile from './UserProfile';
+import battlefield from './battlefield.png';
 
 function App() {
 
@@ -26,11 +29,25 @@ function App() {
   useEffect(() => {
     fetchUsers()
   }, []);
+
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me")
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    });
+  }, []);
+
+  // if (!user) return <App />;
   
   return (
-    <div className="text-center">
-      <Header />
-      <NavBar />
+    <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
+      <Header user={user} setUser={setUser}/>
+      <NavBar user={user} setUser={setUser} />
       <hr/>
         <Switch>
           <Route exact path="/">
@@ -42,11 +59,14 @@ function App() {
           <Route exact path="/users">
             <AllUsers userData={userData} />
           </Route>
+          <Route exact path="/profile/:id">
+            <UserProfile user={user}/>
+          </Route>
           <Route exact path="/login">
-            <LoginForm />
+            <LoginForm user={user} onLogin={setUser} /> 
           </Route>
           <Route exact path="/signup">
-            <SignUpForm />
+            <SignUpForm user={user} onLogin={setUser} />
           </Route>
         </Switch>
     </div>

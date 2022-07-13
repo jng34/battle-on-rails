@@ -12,10 +12,15 @@ code {
     monospace;
 }
 
-.user-form {
-  text-align: center;
+
+/* make static background image */
+#bg {
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.credentials {
-  text-align: center;
+#header {
+  font-family: 'Bubbly', sans-serif;                                        
 }

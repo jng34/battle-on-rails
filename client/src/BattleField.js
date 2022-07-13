@@ -12,7 +12,8 @@ function BattleField({userData}) {
                     <div class="col">
                     <UserCard name={name} profile_img={profile_img} total_hp={total_hp} total_str={total_str} powers={powers}/>
                     </div>
-                    <div class="col">
+                    <div className="col"></div>
+                    <div className="col">
                     Opponent card
                    
                     </div>
