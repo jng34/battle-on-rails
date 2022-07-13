@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+// import battlefieldLogo from './battlefield_logo.png';
 
 
 function Header({ user, setUser }) {
@@ -34,7 +35,8 @@ function Header({ user, setUser }) {
                 <div className="col">
                 </div>
                 <div className="col text-center">
-                    <h1 id="header" className='display-3' onClick={goToMain}>Battle on Rails</h1>
+                    {/* <h1 id="header" className='display-3' onClick={goToMain}>Battle on Rails</h1> */}
+                    <img style={{width: "20em"}}src="https://user-images.githubusercontent.com/100321579/178832386-e2183c7c-b986-44c6-85a0-f743a9cd2e55.png" />
                 </div>
                 <div className="col text-end mt-3">
                     {!user ? <button className="btn btn-success" onClick={goToSignUp}>Sign Up</button> : <></>} &nbsp;

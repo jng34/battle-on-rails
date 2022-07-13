@@ -3,8 +3,11 @@ import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
-function BattleField({userData}) {
-    const {name, profile_img, total_hp, total_str, powers} = userData;
+function BattleField({user}) {
+    
+    const {name, profile_img, total_hp, total_str, powers} = user;
+
+    console.log(name)
     return (
         <div>
             <div class="container">

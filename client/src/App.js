@@ -15,22 +15,21 @@ import battlefield from './battlefield.png';
 function App() {
 
   const [userData, setUserData] = useState([]);
+  const [user, setUser] = useState(null);
 
   function fetchUsers() {
     return fetch('/users')
       .then(res => res.json())
       .then(data => {
         console.log(data);
-
         setUserData(data);
       })
   }
   useEffect(() => {
     fetchUsers()
-  }, []);
+  }, [user]);
 
 
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch("/me")
@@ -53,7 +52,7 @@ function App() {
             <Main userData={userData}/>
           </Route>
           <Route exact path="/battle">
-            <BattleField userData={userData}/>
+            <BattleField user={user}/>
           </Route>
           <Route exact path="/users">
             <AllUsers userData={userData} />
