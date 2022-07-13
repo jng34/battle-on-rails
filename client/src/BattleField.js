@@ -7,13 +7,14 @@ function BattleField() {
     return (
         <div>
             Battlefield
-            {/* <div class="container">
-                <div class="row">
-                    <div class="col">
+            {/* <div className="container">
+                <div className="row">
+                    <div className="col">
                     User card
                     <UserCard />
                     </div>
-                    <div class="col">
+                    <div className="col"></div>
+                    <div className="col">
                     Opponent card
                     <UserCard />
                     </div>

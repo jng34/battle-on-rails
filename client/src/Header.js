@@ -10,6 +10,7 @@ function Header({ user, setUser }) {
         .then((r) => {
             if (r.ok) {
                 setUser(null);
+                history.push("/login")
             }
         });
     }
@@ -38,7 +39,7 @@ function Header({ user, setUser }) {
                 <div className="col text-end mt-3">
                     {!user ? <button className="btn btn-success" onClick={goToSignUp}>Sign Up</button> : <></>} &nbsp;
                     {!user ? <button className="btn btn-secondary" onClick={goToLogIn}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
-                    {user ? <p>Welcome, {user.name}</p> : <></>}
+                    {user ? <p>Welcome, {user.name}!</p> : <></>}
                 </div>
             </div>
         </div>

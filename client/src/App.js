@@ -9,6 +9,7 @@ import LoginForm from './LoginForm';
 import BattleField from './BattleField';
 import AllUsers from './AllUsers';
 import SignUpForm from './SignUpForm';
+import UserProfile from './UserProfile';
 import battlefield from './battlefield.png';
 
 function App() {
@@ -40,11 +41,14 @@ function App() {
           <Route exact path="/users">
             <AllUsers />
           </Route>
+          <Route exact path="/profile/:id">
+            <UserProfile user={user}/>
+          </Route>
           <Route exact path="/login">
-            <LoginForm onLogin={setUser} /> 
+            <LoginForm user={user} onLogin={setUser} /> 
           </Route>
           <Route exact path="/signup">
-            <SignUpForm onLogin={setUser} />
+            <SignUpForm user={user} onLogin={setUser} />
           </Route>
         </Switch>
     </div>

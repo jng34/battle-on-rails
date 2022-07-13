@@ -23,33 +23,35 @@ function NavBar() {
         /* set exact so it knows to only set activeStyle when route is deeply equal to link */
         exact
         /* add styling to Navlink */
-        style={linkStyles}
-        /* add prop for activeStyle */
-        activeStyle={{
-          background: "lightgreen",
-        }}
+        // style={linkStyles}
+        // /* add prop for activeStyle */
+        // activeStyle={{
+        //   background: "lightgreen",
+        // }}
       >
-        MAIN
+        <button type="button" className="btn btn-lg btn-warning">MAIN</button>
       </NavLink>
+      &nbsp;&nbsp;&nbsp;
       <NavLink
         to="/battle"
         exact
-        style={linkStyles}
-        activeStyle={{
-          background: "lightgreen",
-        }}
+        // style={linkStyles}
+        // activeStyle={{
+        //   background: "lightgreen",
+        // }}
       >
-        BATTLE
+        <button type="button" className="btn btn-lg btn-warning">BATTLE</button>
       </NavLink>
+      &nbsp;&nbsp;&nbsp;
       <NavLink
         to="/users"
         exact
-        style={linkStyles}
-        activeStyle={{
-          background: "lightgreen",
-        }}
+        // style={linkStyles}
+        // activeStyle={{
+        //   background: "lightgreen",
+        // }}
       >
-        ALL USERS
+        <button type="button" className="btn btn-lg btn-warning">ALL USERS</button>
       </NavLink>
     </div>
   );

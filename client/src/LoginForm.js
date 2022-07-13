@@ -1,11 +1,17 @@
 import { React, useState } from 'react';  
+import { useHistory, useParams } from 'react-router-dom';
+import UserProfile from './UserProfile';
 
 
-function LoginForm({ onLogin }) {
+function LoginForm({ user, onLogin }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const { id } = useParams()
+    const history = useHistory();
+
 
     function handleLoginSubmit(e) {
         e.preventDefault();
@@ -24,18 +30,17 @@ function LoginForm({ onLogin }) {
             r.json().then((user) => onLogin(user));
             setName("")
             setPassword("")
+            history.push(`/profile/${id}`)
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
         });
     }
- 
-
   
 
     return (
       <div>
-        <div className="card dropdown-menu" style={{width: "25rem", margin: "auto"}}>
+        <div className="card text-start border border-success" style={{width: "25rem", margin: "auto"}}>
             <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>
@@ -44,7 +49,7 @@ function LoginForm({ onLogin }) {
                       className="form-control" 
                       autoComplete="off"
                       value={name}
-                      placeholder="Name" 
+                      placeholder="name" 
                       onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -54,24 +59,25 @@ function LoginForm({ onLogin }) {
                       type="password" 
                       className="form-control" 
                       autoComplete="current-password"
-                      placeholder="Password" 
+                      placeholder="password" 
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary">Sign in</button>
+                  <button type="submit" className="btn btn-primary">SIGN IN</button>
                 </div>
                 {errors.map((err) => (
                   <p key={err} style={{color: "red"}}>{err}</p>
                  ))}
+                <br /> 
+                <p className='text-center'>
+                    Don't have an account? &nbsp;
+                    <a href='/signup'>Sign Up</a>
+                </p>
             </form>
         </div>
         <br />
-            <p>
-                Don't have an account? &nbsp;
-                <a href='/signup'>Sign Up</a>
-            </p>
       </div>
     )
 }
