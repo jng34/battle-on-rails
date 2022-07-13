@@ -1,6 +1,5 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
