@@ -3,23 +3,23 @@ import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
-function BattleField() {
+function BattleField({userData}) {
+    const {name, profile_img, total_hp, total_str, powers} = userData;
     return (
         <div>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                    User card
-                    <UserCard />
+                    <UserCard name={name} profile_img={profile_img} total_hp={total_hp} total_str={total_str} powers={powers}/>
                     </div>
                     <div class="col">
                     Opponent card
-                    <UserCard />
+                   
                     </div>
                 </div>
             </div>
             <div>
-                <QuestionCard />
+                {/* <QuestionCard /> */}
             </div>
         </div>
     )

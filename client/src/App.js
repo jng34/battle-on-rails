@@ -8,8 +8,24 @@ import LoginForm from './LoginForm';
 import BattleField from './BattleField';
 import AllUsers from './AllUsers';
 import SignUpForm from './SignUpForm';
+import  { useState, useEffect } from 'react'
 
 function App() {
+
+  const [userData, setUserData] = useState([]);
+
+  function fetchUsers() {
+    return fetch('/users')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+
+        setUserData(data);
+      })
+  }
+  useEffect(() => {
+    fetchUsers()
+  }, []);
   
   return (
     <div className="text-center">
@@ -18,13 +34,13 @@ function App() {
       <hr/>
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main userData={userData}/>
           </Route>
           <Route exact path="/battle">
-            <BattleField />
+            <BattleField userData={userData}/>
           </Route>
           <Route exact path="/users">
-            <AllUsers />
+            <AllUsers userData={userData} />
           </Route>
           <Route exact path="/login">
             <LoginForm />
