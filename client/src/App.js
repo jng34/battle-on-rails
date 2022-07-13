@@ -14,6 +14,7 @@ import battlefield from './battlefield.png';
 
 function App() {
   const [user, setUser] = useState(null);
+  // const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     fetch("/me")
@@ -24,7 +25,12 @@ function App() {
     });
   }, []);
 
-  // if (!user) return <App />;
+
+  useEffect(() => {
+    fetch("/users")
+    .then(r => r.json())
+    .then(users => console.log(users))
+  }, [user]);
   
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>

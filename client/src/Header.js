@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 
 function Header({ user, setUser }) {
-    let history = useHistory();
+    const history = useHistory();
 
     function handleLogout() {
         fetch("/logout", { method: "DELETE" })
@@ -15,17 +15,17 @@ function Header({ user, setUser }) {
         });
     }
 
-    function goToSignUp() {
-        history.push("/signup")
-    }
+    // function goToSignUp() {
+    //     history.push("/signup")
+    // }
 
-    function goToLogIn() {
-        history.push("/login")
-    }
+    // function goToLogIn() {
+    //     history.push("/login")
+    // }
 
-    function goToMain() {
-        history.push("/")
-    }
+    // function goToMain() {
+    //     history.push("/")
+    // }
 
 
     return (
@@ -34,11 +34,11 @@ function Header({ user, setUser }) {
                 <div className="col">
                 </div>
                 <div className="col text-center">
-                    <h1 id="header" className='display-3' onClick={goToMain}>Battle on Rails</h1>
+                    <h1 id="header" className='display-3' onClick={() => history.push("/")}>Battle on Rails</h1>
                 </div>
                 <div className="col text-end mt-3">
-                    {!user ? <button className="btn btn-success" onClick={goToSignUp}>Sign Up</button> : <></>} &nbsp;
-                    {!user ? <button className="btn btn-secondary" onClick={goToLogIn}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
+                    {!user ? <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button> : <></>} &nbsp;
+                    {!user ? <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
                     {user ? <p>Welcome, {user.name}!</p> : <></>}
                 </div>
             </div>

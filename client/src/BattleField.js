@@ -21,8 +21,9 @@ function BattleField() {
                 </div>
             </div>
             <div>
-                <QuestionCard />
+                <QuestionCard /
             </div> */}
+            <QuestionCard/>
         </div>
     )
 }
