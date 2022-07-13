@@ -1,5 +1,8 @@
 PHASE 4 PROJECT
 
+Logo
+src="https://user-images.githubusercontent.com/100321579/178832386-e2183c7c-b986-44c6-85a0-f743a9cd2e55.png"
+
 MVP - Minimal Viable Product
 
 The purpose of the project is to make a fun, interactive, and educational way of learning.
