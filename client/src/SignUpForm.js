@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 
-function SignUpForm() {
+function SignUpForm({ onLogin }) {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [profileImg, setProfileImg] = useState("")
@@ -27,7 +27,7 @@ function SignUpForm() {
         .then((res) => {
             setIsLoading(false);
             if (res.ok) {
-                res.json().then((user) => console.log(user));
+                res.json().then((user) => onLogin(user));
                 setName("")
                 setProfileImg("")
                 setPassword("")
@@ -82,7 +82,7 @@ function SignUpForm() {
                       type="password" 
                       className="form-control" 
                       autoComplete="current-password"
-                      placeholder="Password Confirmation" 
+                      placeholder="Confirm Password" 
                       value={passwordConfirmation}
                       onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
@@ -98,7 +98,7 @@ function SignUpForm() {
         </div>   
         <br />
             <p>
-                Don't have an account? &nbsp;
+                Already have an account? &nbsp;
                 <a href='/login'>Log In</a>
             </p> 
     </div>

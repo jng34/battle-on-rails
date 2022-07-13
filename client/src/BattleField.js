@@ -6,7 +6,8 @@ import UserCard from './UserCard';
 function BattleField() {
     return (
         <div>
-            <div class="container">
+            Battlefield
+            {/* <div class="container">
                 <div class="row">
                     <div class="col">
                     User card
@@ -20,7 +21,7 @@ function BattleField() {
             </div>
             <div>
                 <QuestionCard />
-            </div>
+            </div> */}
         </div>
     )
 }

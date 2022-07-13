@@ -1,7 +1,7 @@
 import { React, useState } from 'react';  
 
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -21,7 +21,7 @@ function LoginForm() {
         .then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => console.log(user));
+            r.json().then((user) => onLogin(user));
             setName("")
             setPassword("")
           } else {
@@ -59,8 +59,7 @@ function LoginForm() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                {/* <button type="submit" className="btn btn-primary" >Sign in</button> */}
-                <div class="d-grid gap-2">
+                <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-primary">Sign in</button>
                 </div>
                 {errors.map((err) => (
