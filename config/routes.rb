@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :items
+  resources :items, only: [:index]
   resources :powers
   resources :users, only: [:index, :update, :destroy]
 
