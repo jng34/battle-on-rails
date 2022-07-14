@@ -2,12 +2,14 @@ import React from 'react'
 
 function UserProfile({ user }) {
     console.log(user)
-  
-    return (
-        <div>
-            {user ? `${user.name} Profile` : 'nothing'}
-        </div>
-    )
+    
+    if (user) {
+        return (
+            <div>
+                <p>{user.name}</p>
+            </div>
+        )
+    } else return <></>
 }
 
 export default UserProfile

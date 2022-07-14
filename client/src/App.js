@@ -14,7 +14,13 @@ import battlefield from './battlefield.png';
 
 function App() {
   const [user, setUser] = useState(null);
-  // const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    fetch("/users")
+    .then(r => r.json())
+    .then(users => setUserData(users))
+  }, [user]);
 
   useEffect(() => {
     fetch("/me")
@@ -25,27 +31,21 @@ function App() {
     });
   }, []);
 
-
-  useEffect(() => {
-    fetch("/users")
-    .then(r => r.json())
-    .then(users => console.log(users))
-  }, [user]);
   
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
       <Header user={user} setUser={setUser}/>
-      <NavBar user={user} setUser={setUser} />
+      {user ? <NavBar user={user} setUser={setUser} /> : <></>} 
       <hr/>
         <Switch>
           <Route exact path="/">
             <Main />
           </Route>
           <Route exact path="/battle">
-            <BattleField />
+            <BattleField user={user}/>
           </Route>
           <Route exact path="/users">
-            <AllUsers />
+            <AllUsers userData={userData} />
           </Route>
           <Route exact path="/profile/:id">
             <UserProfile user={user}/>

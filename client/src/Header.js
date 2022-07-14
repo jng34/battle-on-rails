@@ -15,18 +15,6 @@ function Header({ user, setUser }) {
         });
     }
 
-    // function goToSignUp() {
-    //     history.push("/signup")
-    // }
-
-    // function goToLogIn() {
-    //     history.push("/login")
-    // }
-
-    // function goToMain() {
-    //     history.push("/")
-    // }
-
 
     return (
         <div className="container">
@@ -39,7 +27,7 @@ function Header({ user, setUser }) {
                 <div className="col text-end mt-3">
                     {!user ? <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button> : <></>} &nbsp;
                     {!user ? <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
-                    {user ? <p>Welcome, {user.name}!</p> : <></>}
+                    {user ? <p>Welcome, {user.name}! <br/>replace w img 😮</p> : <></>}
                 </div>
             </div>
         </div>
