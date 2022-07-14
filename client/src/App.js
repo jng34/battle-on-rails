@@ -1,7 +1,7 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useParams  } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
 import Main from './Main';
@@ -15,6 +15,7 @@ import battlefield from './battlefield.png';
 function App() {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState([]);
+  // const { id } = useParams();
 
   useEffect(() => {
     fetch("/users")
@@ -31,7 +32,8 @@ function App() {
     });
   }, []);
 
-  
+  if (!user) return <LoginForm />;
+
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
       <Header user={user} setUser={setUser}/>

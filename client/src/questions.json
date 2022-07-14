@@ -93,10 +93,10 @@
         "id": 9,
         "prompt": "Which of these validations is most appropriate for making sure that a model's title is at least 20 letters long??",
         "choices": [
-          "validates :category, must_be: ['Fruit', 'Vegetable']",
-          "validates :category, one_of: ['Fruit', 'Vegetable']",
-          "validates :category, presence: { in: ['Fruit', 'Vegetable'] }",
-          "validates :category, inclusion: ['Fruit', 'Vegetable']"
+          "validates :title, letters: { mininmum: 20 }",
+          "validates :title, length: { mininmum: 20 }",
+          "validates :title, at_least: 20 }",
+          "👀"
         ],
         "answer": 3
       },

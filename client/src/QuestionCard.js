@@ -1,32 +1,42 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import questions from './questions.json'
 
 
-function QuestionCard() {
+function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
     const [guess, setGuess] = useState(null)
+    const [question, setQuestion] = useState("")
+    const [correctAns, setCorrectAns] = useState(null)
+    const [answerChoices, setAnswerChoices] = useState([])
 
-    const questionsArr = questions.questions
-    function randomizer() {
-        return Math.floor(Math.random()*questionsArr.length + 1)
-    }
+    useEffect(() => {
+        const questionsArr = questions.questions
+        const randomNum = Math.floor(Math.random()*questionsArr.length + 1)
+        const randomQuestion = questionsArr.filter((q) => q.id === randomNum)
+        const choices = randomQuestion[0].choices
+        const prompt = randomQuestion[0].prompt
+        const answer = randomQuestion[0].answer
+        setQuestion(prompt)
+        setCorrectAns(answer)
+        setAnswerChoices(choices)
+    }, [answerStatus])
 
-  
 
-    const randomNum = Math.floor(Math.random()*questionsArr.length + 1)
-    const randomQuestion = questionsArr.filter((q) => q.id === randomNum)
-    const prompt = randomQuestion[0].prompt
-    const answerChoices = randomQuestion[0].choices
-    const correctAns = randomQuestion[0].answer
-    
 
     function handleSelectAns(e) {
         setGuess(parseInt(e.target.value))
     }
-    console.log(guess)
+   
     
     function handleAnswerChoice(e) {
         e.preventDefault();
-        guess === correctAns ? alert('Correct!') : alert('Incorrect.') 
+        if (guess === correctAns) {
+            alert('Correct!')
+            setAnswerStatus(!answerStatus)
+        } else {
+            damage() //fix conflict with timer countdown 
+            alert('Incorrect. You took damage!') 
+
+        }
     }
     
     
@@ -37,7 +47,7 @@ function QuestionCard() {
                     Question 
                 </div>
                 <div className="card-body">
-                    <p className="card-title text-start">{prompt}</p>
+                    <p className="card-title text-start">{question}</p>
                     <br />
                     <div className="text-start">
                         <form onSubmit={handleAnswerChoice}>

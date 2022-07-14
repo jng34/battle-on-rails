@@ -7,7 +7,6 @@ class PowerSerializer < ActiveModel::Serializer
   
   def item_img
     self.object.item.img_url
-
   end
   
 end

@@ -1,8 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 
 function Header({ user, setUser }) {
+    const { id } = useParams();
     const history = useHistory();
 
     function handleLogout() {
@@ -27,7 +28,9 @@ function Header({ user, setUser }) {
                 <div className="col text-end mt-3">
                     {!user ? <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button> : <></>} &nbsp;
                     {!user ? <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
-                    {user ? <p>Welcome, {user.name}! <br/><a href="/profile/:id" My Profile>My Profile</a></p> : <></>}
+                    {user ? 
+                    <p>Welcome, {user.name}! <br/>
+                    <a href="/profile/:id" My Profile>My Profile</a></p> : <></>}
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { React, useState } from 'react';  
 import { useHistory, useParams } from 'react-router-dom';
-import UserProfile from './UserProfile';
+// import UserProfile from './UserProfile';
 
 
 function LoginForm({ user, onLogin }) {
@@ -27,10 +27,13 @@ function LoginForm({ user, onLogin }) {
         .then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => {
+              onLogin(user)
+              history.push("/profile")
+            });
             setName("")
             setPassword("")
-            history.push(`/profile/${id}`)
+            
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
