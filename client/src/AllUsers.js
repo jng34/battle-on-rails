@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 
 function AllUsers({userData}) {
 
-    console.log(userData[0])
+
     // const userPowers = userData.map((user) => user.powers)
     // const userItems  = userPowers.map((power) => power.item_name)
 
