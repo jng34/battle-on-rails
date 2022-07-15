@@ -32,7 +32,7 @@ function App() {
       });
     }, []);
 
-    if (!user) return <LoginForm onLogin={setUser} />;
+    // if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>

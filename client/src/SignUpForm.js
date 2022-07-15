@@ -1,5 +1,5 @@
-import {React, useState} from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 
 function SignUpForm({ onSignUp }) {
     const [name, setName] = useState("")
@@ -9,7 +9,7 @@ function SignUpForm({ onSignUp }) {
     const [errors, setErrors] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-    const { id } = useParams()
+    
     const history = useHistory();
 
     function handleSubmitSignUp(e) {
@@ -36,7 +36,7 @@ function SignUpForm({ onSignUp }) {
                 setProfileImg("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push(`/profile/${id}`)
+                history.push("/")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }
@@ -103,7 +103,7 @@ function SignUpForm({ onSignUp }) {
                 <br />
                 <p className="text-center">
                     Already have an account? &nbsp;
-                    <a href='/login'>Log In</a>
+                    <Link to='/login'>Log In</Link>
                 </p> 
             </form>
         </div>   

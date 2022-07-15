@@ -1,5 +1,5 @@
 import { React, useState } from 'react';  
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 // import UserProfile from './UserProfile';
 
 
@@ -75,7 +75,7 @@ function LoginForm({ user, onLogin }) {
                 <br /> 
                 <p className='text-center'>
                     Don't have an account? &nbsp;
-                    <a href='/signup'>Sign Up</a>
+                    <Link to='/signup'>Sign Up</Link>
                 </p>
             </form>
         </div>

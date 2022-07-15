@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_07_11_001255) do
     t.integer "str"
     t.integer "hp"
     t.text "description"
-    t.integer "user_id" 1   
+    t.integer "user_id"
     t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
