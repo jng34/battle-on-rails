@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import questions from './questions.json'
 
 
@@ -6,10 +6,7 @@ function QuestionCard() {
     const [guess, setGuess] = useState(null)
 
     const questionsArr = questions.questions
-    function randomizer() {
-        return Math.floor(Math.random()*questionsArr.length + 1)
-    }
-
+ 
   
 
     const randomNum = Math.floor(Math.random()*questionsArr.length + 1)

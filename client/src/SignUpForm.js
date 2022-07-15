@@ -26,6 +26,7 @@ function SignUpForm({ user, onLogin }) {
                 profile_img: profileImg,
                 password,
                 password_confirmation: passwordConfirmation
+                
             })
         })
         .then((res) => {

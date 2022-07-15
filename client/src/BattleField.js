@@ -7,7 +7,7 @@ function BattleField({user}) {
 
     const [inven, setInven] = useState([])
     function fetchItems() {
-        return fetch('/items')
+        fetch('/items')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -19,7 +19,7 @@ function BattleField({user}) {
     },[]);
     console.log("Inventory:", inven)
     
-    const dropItem = Math.floor(Math.random() * inven.length + 1)
+    const dropItem = Math.floor(Math.random() * user.powers.length)
 
 
     const {name, profile_img, total_hp, total_str, powers} = user;
@@ -47,14 +47,37 @@ function BattleField({user}) {
     }
     const zeroHp = () => {  
         if (uhp <= 0){
-            console.log ("loser, make new monster")
+            console.log(user.power[dropItem].id)
         } else if (mhp <= 0){
-            console.log("winner: patch random item:", dropItem)
+            console.log("winner", inven[dropItem])
+
         } else {
             setTimeAtk()
         }
     }
+
+    // const handlePatch = () => {fetch(`/me`, {
+    //     method: 'PATCH',
+    //     headers: { 
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         "base_hp": user.base_hp + 2,
+    //         "base_str": user.base_str + 1
+    //     }),
+    //     }).then((r) => r.json())
+    //     .then((data) => console.log(data))
+    //     }
+
+    // const handleDelete = () => {
+    //     fetch(`/users/${id}`, {
+    //     method: "DELETE"
+    //     })
+    //     .then(resp => console.log(resp.status))
     
+    //     }
+zeroHp()
+
     return (
         <div>
             <div class="container">

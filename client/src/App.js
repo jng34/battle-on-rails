@@ -1,6 +1,6 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
 import Main from './Main';
@@ -13,12 +13,22 @@ import UserProfile from './UserProfile';
 import battlefield from './battlefield.png';
 
 function App() {
+ const { id } = useParams();
 
   const [userData, setUserData] = useState([]);
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    fetch("/me")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setUser(user))
+        }
+      });
+  }, []);
+
   function fetchUsers() {
-    return fetch('/users')
+    fetch('/users')
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -31,16 +41,6 @@ function App() {
 
 
 
-  useEffect(() => {
-    fetch("/me")
-    .then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user))
-      }
-    });
-  }, []);
-
-  // if (!user) return <App />;
   
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
@@ -57,7 +57,7 @@ function App() {
           <Route exact path="/users">
             <AllUsers userData={userData} />
           </Route>
-          <Route exact path="/profile/:id">
+          <Route exact path="/profile/:user">
             <UserProfile user={user}/>
           </Route>
           <Route exact path="/login">
