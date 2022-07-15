@@ -7,7 +7,7 @@ function LoginForm({ user, onLogin }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
 
@@ -15,7 +15,6 @@ function LoginForm({ user, onLogin }) {
     function handleLoginSubmit(e) {
         e.preventDefault();
         setErrors([])
-        setIsLoading(true);
         fetch("/login", {
           method: "POST",
           headers: {
@@ -24,7 +23,6 @@ function LoginForm({ user, onLogin }) {
           body: JSON.stringify({ name, password }),
         })
         .then((r) => {
-          setIsLoading(false);
           if (r.ok) {
             r.json().then((user) => {
               onLogin(user)

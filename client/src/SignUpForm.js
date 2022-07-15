@@ -7,7 +7,7 @@ function SignUpForm({ onSignUp }) {
     const [profileImg, setProfileImg] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    //const [isLoading, setIsLoading] = useState(false)
 
     
     const history = useHistory();
@@ -15,7 +15,7 @@ function SignUpForm({ onSignUp }) {
     function handleSubmitSignUp(e) {
         e.preventDefault();
         setErrors([]);
-        setIsLoading(true);
+      
         fetch("/signup", {
             method: "POST",
             headers: {
@@ -29,7 +29,6 @@ function SignUpForm({ onSignUp }) {
             })
         })
         .then((res) => {
-            setIsLoading(false);
             if (res.ok) {
                 res.json().then((user) => onSignUp(user));
                 setName("")

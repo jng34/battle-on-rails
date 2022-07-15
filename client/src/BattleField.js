@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
 
 function BattleField({ user }) {
-    // const {name, profile_img, total_hp, total_str, powers} = user;
-    const [counter, setCounter] = useState(0);
+    //const {name, profile_img, total_hp, total_str, powers} = user;
+    //const [counter, setCounter] = useState(0);
     const [answerStatus, setAnswerStatus] = useState(false)
-    const [inventory, setInventory] = useState([])
+    // const [inventory, setInventory] = useState([])
     const [uhp, setUhp] = useState(user.total_hp)
 
-    useEffect(() => {
-        fetch('/items')
-            .then(res => res.json())
-            .then(data => setInventory(data))
-    },[]);
+    // useEffect(() => {
+    //     fetch('/items')
+    //         .then(res => res.json())
+    //         .then(data => setInventory(data))
+    // },[]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-        setCounter((count) => count + 1);
-        }, 1000);
+    // useEffect(() => {
+        // const interval = setInterval(() => {
+        // setCounter((count) => count + 1);
+        // }, 10000);
 
-      return function() {
-        clearInterval(interval);
-      }
+    //   return function() {
+    //     clearInterval(interval);
+    //   }
     
-    }, []);
+    // }, []);
 
 
 
-    const dropItem = Math.floor(Math.random() * inventory.length + 1)
+    // const dropItem = Math.floor(Math.random() * inventory.length + 1)
     const monsterName = "Monster";
     const monsterimg = "https://www.smashbros.com/wiiu-3ds/images/character/pikachu/main.png"
-    const mstr = 2
-    const baseMHp = 10
+    const mstr = 1
+    const baseMHp = 1
     //monster state
     const [ mhp, setMhp ] = useState(baseMHp)
 
@@ -52,17 +52,31 @@ function BattleField({ user }) {
         const newHp = mhp - user.total_str
         return (setMhp(newHp))
     }
+    const handlePatch = () => {fetch(`/users/${user.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            
+            base_hp: user.base_hp + 2,
+            base_str: user.base_str + 1
+        }),
+    }).then((r) => console.log(r.status))
 
+        }
+    function handleDeleted() {
+        fetch(`/users/${user.id}`, {
+            method: "DELETE",
+        })
+            .then(r => console.log(r.status))}
     const zeroHp = () => {  
         if (uhp <= 0){
             console.log("You lose.")
         } else if (mhp <= 0){
-            console.log("You win. You received an item -", dropItem)
+            handlePatch()
         } else {
             setTimeAtk()
         }
     }
-
+console.log(user.base_hp,user.base_str)
     zeroHp()
 
 
@@ -79,7 +93,7 @@ function BattleField({ user }) {
                         <button type="button" className='btn btn-lg btn-block btn-danger' disabled data-bs-toggle="button">Attack ⚔️</button> 
                         : <button type="button" className='btn btn-lg btn-block btn-danger active' data-bs-toggle="button" onClick={handleAttack} >Attack ⚔️</button>}
                         <br /><br />
-                        <div className="text-large fw-semibold">Timer: {counter} sec</div>
+                        {/* <div className="text-large fw-semibold">Timer: {counter} sec</div> */}
                         <QuestionCard answerStatus={answerStatus} setAnswerStatus={setAnswerStatus} damage={takeDamage}/>
                     </div>
                     <div className="col">
