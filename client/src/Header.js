@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import logo from './bflogo.png';
 
 
 function Header({ user, setUser }) {
-    const { id } = useParams();
     const history = useHistory();
 
     function handleLogout() {
@@ -11,7 +11,7 @@ function Header({ user, setUser }) {
         .then((r) => {
             if (r.ok) {
                 setUser(null);
-                history.push("/login")
+                history.push("/")
             }
         });
     }
@@ -22,15 +22,17 @@ function Header({ user, setUser }) {
             <div className="row">
                 <div className="col">
                 </div>
-                <div className="col text-center">
-                    <h1 id="header" className='display-3' onClick={() => history.push("/")}>Battle on Rails</h1>
+                <div className="col align-self-start mb-" >
+                    {/* <h1 id="header" className='display-3'>Battle on Rails</h1> */}
+                    <img src={logo} alt="logo" className='img-fluid' style={{width: '50em'}}/>
                 </div>
                 <div className="col text-end mt-3">
                     {!user ? <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button> : <></>} &nbsp;
-                    {!user ? <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button> : <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button>}
+                    {!user ? 
+                    <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>
+                    : <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>}
                     {user ? 
-                    <p>Welcome, {user.name}! <br/>
-                    <a href="/profile/:id" My Profile>My Profile</a></p> : <></>}
+                    <p>Welcome, {user.name}! <br/></p> : <></>}
                 </div>
             </div>
         </div>

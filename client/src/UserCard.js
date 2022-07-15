@@ -2,18 +2,18 @@ import React from 'react'
 
 function UserCard({ name, profile_img, total_hp, total_str, powers }) { 
   
-  const powerData = powers.map((power) => power.name).map((pow) => (
-    <p>{pow}<br /></p>
-  ))
-  const itemData = powers.map((power) => power.item_img).map((item) => (
-    <img src={item} key={item} style={{width: '3em'}}/>
-  ))
-  console.log(itemData)
+  const powerData = powers && powers.length > 0 ? powers.map((power) => power.name).map((pow) => (
+    <p key={pow}>{pow}<br /></p>
+  )) : null
+  const itemData = powers && powers.length > 0 ? powers.map((power) => power.item_img).map((item) => (
+    <img src={item} id="item" alt="" key={item} style={{width: '3em'}} data-bs-toggle="tooltip" data-bs-placement="right" title="Cool weapon eh?"/>
+  )) : null
+
 
   return(
 
     <div className="col">
-      <div className="card h-100 bg-teal">
+      <div className="card h-100 ">
         <img src={profile_img} className="card-img-top" alt="profile"/>
         <div className="card-body">
           <h3 className="card-title">{name}</h3><br/>

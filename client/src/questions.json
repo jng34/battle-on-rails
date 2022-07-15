@@ -91,14 +91,14 @@
       },
       {
         "id": 9,
-        "prompt": "Which of these validations is most appropriate for making sure that a model's title is at least 20 letters long??",
+        "prompt": "Which of these validations is most appropriate for making sure that a model's title is at least 20 letters long?",
         "choices": [
           "validates :title, letters: { mininmum: 20 }",
           "validates :title, length: { mininmum: 20 }",
           "validates :title, at_least: 20 }",
           "👀"
         ],
-        "answer": 3
+        "answer": 1
       },
       {
         "id": 10,

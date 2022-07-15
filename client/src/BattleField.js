@@ -3,38 +3,38 @@ import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
+
 function BattleField({ user }) {
+    // const {name, profile_img, total_hp, total_str, powers} = user;
+    const [counter, setCounter] = useState(0);
     const [answerStatus, setAnswerStatus] = useState(false)
-    const [inven, setInven] = useState([])
-    
+    const [inventory, setInventory] = useState([])
+    const [uhp, setUhp] = useState(user.total_hp)
 
-    const {name, profile_img, total_hp, total_str, powers} = user;
-
-    const [uhp, setUhp] = useState(total_hp)
-    // Attack logic - create correct answer state in QuestionCard and pass as callback back to Battlefield component so the Attack button will become activated by ternary and toggle
-    
-
-    // William code
-
-    function fetchItems() {
-        return fetch('/items')
+    useEffect(() => {
+        fetch('/items')
             .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setInven(data);
-            })
-    }
-    // useEffect(() => {
-    //     fetchItems()
-    // },[]);
+            .then(data => setInventory(data))
+    },[]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setCounter((count) => count + 1);
+        }, 1000);
+
+      return function() {
+        clearInterval(interval);
+      }
     
-    const dropItem = Math.floor(Math.random() * inven.length + 1)
-   
-    const monster = "steve";
+    }, []);
+
+
+
+    const dropItem = Math.floor(Math.random() * inventory.length + 1)
+    const monsterName = "Monster";
     const monsterimg = "https://www.smashbros.com/wiiu-3ds/images/character/pikachu/main.png"
-    const mstr = 1
-    const baseMHp = 3
+    const mstr = 2
+    const baseMHp = 10
     //monster state
     const [ mhp, setMhp ] = useState(baseMHp)
 
@@ -45,19 +45,19 @@ function BattleField({ user }) {
     }
     
     const setTimeAtk = () => {
-            setTimeout(takeDamage, 10000)
+        setTimeout(takeDamage, 10000)
     } 
 
     const handleAttack = () => {
-        const newHp = mhp - total_str
+        const newHp = mhp - user.total_str
         return (setMhp(newHp))
     }
 
     const zeroHp = () => {  
         if (uhp <= 0){
-            console.log ("loser, play again")
+            console.log("You lose.")
         } else if (mhp <= 0){
-            console.log("winner: patch random item:", dropItem)
+            console.log("You win. You received an item -", dropItem)
         } else {
             setTimeAtk()
         }
@@ -65,31 +65,30 @@ function BattleField({ user }) {
 
     zeroHp()
 
-    //Make timer countdown
 
     return (
         <div>
-            <div class="container">
-                <div class="row">
-                    <div class="col ">
+            <div className="container">
+                <div className="row">
+                    <div className="col ">
                     <h2>You</h2>
-                    <UserCard name={name} profile_img={profile_img} total_hp={uhp} total_str={total_str} powers={powers}/>
+                    <UserCard name={user.name} profile_img={user.profile_img} total_hp={uhp} total_str={user.total_str} powers={user.powers}/>
                     </div>
-                    <div className="col align-self-center">
-                        {/* write ternary logic to activate button when question is answered correctly */}
-                        {!answerStatus ? <button type="button" className='btn btn-lg btn-block btn-danger' disabled data-bs-toggle="button">Attack ⚔️</button> :
-                        <button type="button" className='btn btn-lg btn-block btn-danger active' data-bs-toggle="button" onClick={handleAttack} >Attack ⚔️</button>}
+                    <div className="col align-self-start mt-5">
+                        {!answerStatus ? 
+                        <button type="button" className='btn btn-lg btn-block btn-danger' disabled data-bs-toggle="button">Attack ⚔️</button> 
+                        : <button type="button" className='btn btn-lg btn-block btn-danger active' data-bs-toggle="button" onClick={handleAttack} >Attack ⚔️</button>}
+                        <br /><br />
+                        <div className="text-large fw-semibold">Timer: {counter} sec</div>
+                        <QuestionCard answerStatus={answerStatus} setAnswerStatus={setAnswerStatus} damage={takeDamage}/>
                     </div>
                     <div className="col">
                     <h2>Opponent</h2>
-                    <UserCard name={monster} profile_img={monsterimg} total_hp={mhp} total_str={mstr} powers={powers}/>
+                    <UserCard name={monsterName} profile_img={monsterimg} total_hp={mhp} total_str={mstr} powers={user.powers}/>
                     </div>
                 </div>
             </div>
             <br />
-            <div>
-                <QuestionCard answerStatus={answerStatus} setAnswerStatus={setAnswerStatus} damage={takeDamage}/>
-            </div>
         </div>
     )
 }

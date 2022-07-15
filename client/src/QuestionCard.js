@@ -8,6 +8,7 @@ function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
     const [correctAns, setCorrectAns] = useState(null)
     const [answerChoices, setAnswerChoices] = useState([])
 
+
     useEffect(() => {
         const questionsArr = questions.questions
         const randomNum = Math.floor(Math.random()*questionsArr.length + 1)
@@ -19,7 +20,6 @@ function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
         setCorrectAns(answer)
         setAnswerChoices(choices)
     }, [answerStatus])
-
 
 
     function handleSelectAns(e) {
@@ -34,17 +34,15 @@ function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
             setAnswerStatus(!answerStatus)
         } else {
             damage() //fix conflict with timer countdown 
-            alert('Incorrect. You took damage!') 
-
         }
     }
     
     
   return (
         <div>
-            <div className="card" style={{width: "50rem", margin: "auto"}}>
-                <div className="card-header">
-                    Question 
+            <div className="card" style={{width: "25rem", margin: "auto"}}>
+                <div className="card-header ">
+                Answer correctly to attack
                 </div>
                 <div className="card-body">
                     <p className="card-title text-start">{question}</p>
@@ -59,7 +57,7 @@ function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
                             <label htmlFor="answer">{answerChoices[2]}</label><br />
                             <input type="radio" name='1' value="3" onClick={handleSelectAns}/> &nbsp; 
                             <label htmlFor="answer">{answerChoices[3]}</label><br /><br />
-                            <button type="submit" className="btn btn-secondary">Submit Answer</button>
+                            <button type="submit" className="btn btn-secondary text-">Submit Answer</button>
                         </form>
                     </div>
                 </div>

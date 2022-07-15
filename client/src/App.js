@@ -1,7 +1,7 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import { Route, Switch, useParams  } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
 import Main from './Main';
@@ -14,30 +14,30 @@ import battlefield from './battlefield.png';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState([]);
-  // const { id } = useParams();
+  // useEffect(() => {
+  //   const getUser = async() => {
+  //     let request = await fetch("/me")
+  //     if (request.ok) {
+  //       let response = await request.json()
+  //       setUser(response)
+  //     }
+  //   }
+  //   getUser()
+  // }, []);
+    useEffect(() => {
+      fetch("/me").then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setUser(user));
+        }
+      });
+    }, []);
 
-  useEffect(() => {
-    fetch("/users")
-    .then(r => r.json())
-    .then(users => setUserData(users))
-  }, [user]);
-
-  useEffect(() => {
-    fetch("/me")
-    .then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user))
-      }
-    });
-  }, []);
-
-  if (!user) return <LoginForm />;
+    if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
       <Header user={user} setUser={setUser}/>
-      {user ? <NavBar user={user} setUser={setUser} /> : <></>} 
+      {user ? <NavBar /> : <div></div>} 
       <hr/>
         <Switch>
           <Route exact path="/">
@@ -47,16 +47,16 @@ function App() {
             <BattleField user={user}/>
           </Route>
           <Route exact path="/users">
-            <AllUsers userData={userData} />
+            <AllUsers />
           </Route>
-          <Route exact path="/profile/:id">
+          <Route exact path="/profile">
             <UserProfile user={user}/>
           </Route>
           <Route exact path="/login">
             <LoginForm user={user} onLogin={setUser} /> 
           </Route>
           <Route exact path="/signup">
-            <SignUpForm user={user} onLogin={setUser} />
+            <SignUpForm onSignUp={setUser} />
           </Route>
         </Switch>
     </div>

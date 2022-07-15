@@ -1,7 +1,7 @@
 import {React, useState} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-function SignUpForm({ user, onLogin }) {
+function SignUpForm({ onSignUp }) {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [profileImg, setProfileImg] = useState("")
@@ -31,7 +31,7 @@ function SignUpForm({ user, onLogin }) {
         .then((res) => {
             setIsLoading(false);
             if (res.ok) {
-                res.json().then((user) => onLogin(user));
+                res.json().then((user) => onSignUp(user));
                 setName("")
                 setProfileImg("")
                 setPassword("")

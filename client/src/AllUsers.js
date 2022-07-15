@@ -1,14 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import UserCard from './UserCard';
 
 
-function AllUsers({userData}) {
+function AllUsers() {
+    const [userList, setUserList] = useState([])
 
+    useEffect(() => {
+        fetch("/users")
+        .then(r => r.json())
+        .then(userData => setUserList(userData))
+    }, []);
 
-    // const userPowers = userData.map((user) => user.powers)
-    // const userItems  = userPowers.map((power) => power.item_name)
-
-   const users = userData.map((user) => (
+   const users = userList?.map((user) => (
         <UserCard key={user.id} name={user.name} profile_img={user.profile_img} total_hp={user.total_hp} total_str={user.total_str} powers={user.powers}/>
     ))
     
@@ -18,6 +21,5 @@ function AllUsers({userData}) {
         </div>
     )
 }
-
 
 export default AllUsers;

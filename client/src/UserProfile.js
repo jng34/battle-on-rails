@@ -1,25 +1,32 @@
 import React from 'react'
 
 function UserProfile({ user }) {
+   
+    //CRUD
+    //CREATE on signup - done
+    //READ - show on profile comp - done upon rendering
+    //Update - random item added to user upon winning - INCOMPLETE
+    //Delete user in Profile -INCOMPLETE
+
         
-    if (user) {
-        return (
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src={user.profile_img} class="img-fluid rounded-start" alt="user" />
+    return (
+            <div className="card mb-3" style={{width: "540px"}}>
+                <div className="row g-0">
+                    <div className="col-md-4">
+                        <img src={user?.profile_img} alt="profile" />
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{user.name}</h5>
-                            <p class="card-text">{user.powers}</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div className="col-md-8">
+                        <div className="card-body">
+                            <h5 className="card-title">{user?.name}</h5>
+                            <p className="card-text">{user?.powers}</p>
+                            <p className="card-text">
+                                <small className="text-muted">Last updated 3 mins ago</small>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        )
-    } else return <></>
+    )    
 }
 
-export default UserProfile
+export default UserProfile;
