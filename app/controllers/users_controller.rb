@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        userItem = @current_user.power.find(params[:id])
-        userItem.destroy
-        render json: userItem, status: :destroyed
+        user = user.find(params[:id])
+        user.destroy
+        render json: user, status: :ok
     end
 
     private

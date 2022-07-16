@@ -30,10 +30,10 @@ function BattleField({ user }) {
 
 
 
-    // const dropItem = Math.floor(Math.random() * inventory.length + 1)
+    
     const monsterName = "Monster";
     const monsterimg = "https://www.smashbros.com/wiiu-3ds/images/character/pikachu/main.png"
-    const mstr = 1
+    const mstr = 3
     const baseMHp = 1
     //monster state
     const [ mhp, setMhp ] = useState(baseMHp)
@@ -69,14 +69,14 @@ function BattleField({ user }) {
             .then(r => console.log(r.status))}
     const zeroHp = () => {  
         if (uhp <= 0){
-            console.log("You lose.")
+         handleDeleted()
         } else if (mhp <= 0){
             handlePatch()
         } else {
             setTimeAtk()
         }
     }
-console.log(user.base_hp,user.base_str)
+console.log(user.powers[0].id)
     zeroHp()
 
 
