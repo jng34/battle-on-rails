@@ -10,7 +10,7 @@ function Header({ user, setUser }) {
         fetch("/logout", { method: "DELETE" })
         .then((r) => {
             if (r.ok) {
-                setUser(null);
+                setUser({});
                 history.push("/")
             }
         });
@@ -22,16 +22,14 @@ function Header({ user, setUser }) {
             <div className="row">
                 <div className="col">
                 </div>
-                <div className="col align-self-start mb-">
-                    {/* <h1 id="header" className='display-3'>Battle on Rails</h1> */}
-                    <img src={logo} alt="logo" className='img-fluid' style={{minWidth: '52em', height:"100%"}}/>
+                <div className="col align-self-start">
+                    <img id="header" src={logo} alt="logo" className='img-fluid' style={{minWidth: '42em', height:"100%"}} onClick={() => history.push("/")}/>
                 </div>
                 <div style={{paddingTop:"20px", paddingBottom:"15px"}} className="col text-end mt-3">
-                    {!user ? <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button> : <></>} &nbsp;
-                    {!user ? 
-                    <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>
-                    : <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>}
-                    {user ? 
+                    {user.name ? <></> : <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button>} &nbsp;
+                    {user.name ? <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>
+                    : <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>}
+                    {user.name ? 
                     <p>Welcome, {user.name}! <br/></p> : <></>}
                 </div>
             </div>

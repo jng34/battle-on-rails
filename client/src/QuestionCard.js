@@ -33,6 +33,7 @@ function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
             alert('Correct!')
             setAnswerStatus(!answerStatus)
         } else {
+            alert('Incorrect. You take damage.')
             damage() //fix conflict with timer countdown 
         }
     }

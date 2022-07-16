@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 
 
 
-function BattleField({ user }) {
+function BattleField({ user, setUser }) {
     // const {name, profile_img, total_hp, total_str, powers} = user;
     const [counter, setCounter] = useState(0);
     const [answerStatus, setAnswerStatus] = useState(false)
@@ -21,12 +21,19 @@ function BattleField({ user }) {
         const interval = setInterval(() => {
         setCounter((count) => count + 1);
         }, 1000);
-
-      return function() {
-        clearInterval(interval);
-      }
     
     }, []);
+
+    const handlePatch = () => {fetch(`/users/${user.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+
+            base_hp: 10,
+            base_str: 5
+        }),
+    }).then((r) => r.json())
+    .then(update => setUser(update))
+    }
 
 
 
@@ -34,7 +41,7 @@ function BattleField({ user }) {
     const monsterName = "Monster";
     const monsterimg = "https://www.smashbros.com/wiiu-3ds/images/character/pikachu/main.png"
     const mstr = 2
-    const baseMHp = 10
+    const baseMHp = 2
     //monster state
     const [ mhp, setMhp ] = useState(baseMHp)
 
@@ -45,7 +52,7 @@ function BattleField({ user }) {
     }
     
     const setTimeAtk = () => {
-        setTimeout(takeDamage, 10000)
+        setTimeout(takeDamage, 15000)
     } 
 
     const handleAttack = () => {
@@ -55,9 +62,9 @@ function BattleField({ user }) {
 
     const zeroHp = () => {  
         if (uhp <= 0){
-            console.log("You lose.")
+            alert("You lose.")
         } else if (mhp <= 0){
-            console.log("You win. You received an item -", dropItem)
+            handlePatch()
         } else {
             setTimeAtk()
         }

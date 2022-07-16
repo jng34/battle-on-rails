@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :name, presence: true, uniqueness: true
-    validates :password, presence: true
+    validates :password, presence: true, on: :create
     #Password validations
     # validate :password_lower_case
     # validate :password_uppercase

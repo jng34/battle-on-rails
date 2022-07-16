@@ -11,6 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* 
+.img-fluid {
+  max-width: 45em;
+  height: 100%;
+} */
+
+/* @media screen and (max-width: 500px) {
+  .img-fluid {
+    max-width: 30em;
+  }
+} */
+
+/* @media screen and (max-width: 500px) {
+  .img-fluid {
+    max-width: 10em;
+    height: 100%;
+  }
+} */
 
 
 /* make static background image */
@@ -26,10 +44,11 @@ code {
   padding-bottom: 80px;
 }
 
-#header {
-  font-family: 'Bubbly', sans-serif;                                        
+#header:hover {
+  cursor: pointer;                            
 }
 
 #item:hover {
   cursor: pointer;
 }
+

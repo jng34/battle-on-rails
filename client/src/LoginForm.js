@@ -28,7 +28,7 @@ function LoginForm({ user, onLogin }) {
           if (r.ok) {
             r.json().then((user) => {
               onLogin(user)
-              history.push("/")
+              history.push("/battle")
             });
             setName("")
             setPassword("")
