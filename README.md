@@ -1,9 +1,12 @@
-PHASE 4 PROJECT
+PHASE 4 PROJECT "Battle on RAILS"
 
 Logo
 src="https://user-images.githubusercontent.com/100321579/178832386-e2183c7c-b986-44c6-85a0-f743a9cd2e55.png"
 
 MVP - Minimal Viable Product
+
+(see models.drawio.svg file)
+
 
 The purpose of the project is to make a fun, interactive, and educational way of learning.
 
@@ -16,13 +19,23 @@ As a user, you can login and create an account in order to play.
 The user must answer coding questions to fight the opponent to win items 
 that will make the user stronger.
 
+Core Deliverables
+
+- Create signup/login page for new / existing users
+- Create full CRUD for user
+- Allow users to customize items and powers
+- Create functionality where user plays against computer (existing user)
+
 
 
 REACT COMPONENTS
 
-
+(see components.drawio.svg file)
 
 STRETCH GOALS
+
+-Drag n' drop feature 
+-CSS 
 
 TBD
 

@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* 
+.img-fluid {
+  max-width: 45em;
+  height: 100%;
+} */
+
+/* @media screen and (max-width: 500px) {
+  .img-fluid {
+    max-width: 30em;
+  }
+} */
+
+/* @media screen and (max-width: 500px) {
+  .img-fluid {
+    max-width: 10em;
+    height: 100%;
+  }
+} */
+
+
+/* make static background image */
+#bg {
+  min-height: 140vh;
+  max-height: 210vh;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover; 
+  background-attachment: fixed;
+  /* width: auto; */
+  /* height: 100%;  */
+  padding-bottom: 80px;
+}
+
+#header:hover {
+  cursor: pointer;                            
+}
+
+#item:hover {
+  cursor: pointer;
+}
+
