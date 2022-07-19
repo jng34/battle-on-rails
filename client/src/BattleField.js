@@ -1,43 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import QuestionCard from './QuestionCard';
 import UserCard from './UserCard';
 
 
 
 function BattleField({ user, setUser }) {
-    // const {name, profile_img, total_hp, total_str, powers} = user;
+    const { id, name, profile_img, total_hp, total_str, powers } = user;
     const [counter, setCounter] = useState(0);
     const [answerStatus, setAnswerStatus] = useState(false)
-    const [inventory, setInventory] = useState([])
-    const [uhp, setUhp] = useState(user.total_hp)
-
+    const [allPowers, setAllPowers] = useState([])
+    const [items, setItems] = useState([])
+    const [rewardItem, setRewardItem] = useState([])
+    const [uhp, setUhp] = useState(total_hp)
+    
+    
     useEffect(() => {
-        fetch('/items')
-            .then(res => res.json())
-            .then(data => setInventory(data))
-    },[]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
+        setInterval(() => {
         setCounter((count) => count + 1);
         }, 1000);
-    
+
+        //cleanup function upon win or lose
     }, []);
 
-    const handlePatch = () => {fetch(`/users/${user.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({
+    useEffect(() => {
+        fetch('/powers')
+            .then(res => res.json())
+            .then(data => setAllPowers(data))
+    }, []);
+    
+    //must create fetch a random item 
+    useEffect(() => {
+        fetch("/items")
+        .then(res => res.json())
+        .then(data => setItems(data));
+    }, []);
 
-            base_hp: 10,
-            base_str: 5
-        }),
-    }).then((r) => r.json())
-    .then(update => setUser(update))
+    const itemIndex = Math.floor(Math.random() * items.length + 1)
+    setRewardItem(items[itemIndex])
+
+    //then create (POST) a new power
+    function handleNewPower() {
+        fetch("/powers", {
+           method: "POST",
+           headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify({})
+        })
+    }
+
+    
+    //then update (PATCH) stats to user
+    const handlePatch = () => {
+        fetch(`/users/${id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                base_hp: total_hp + 10,
+                base_str: total_str + 5
+            }),
+        })
+        .then((r) => r.json())
+        .then(update => setUser(update))
     }
 
 
 
-    const dropItem = Math.floor(Math.random() * inventory.length + 1)
     const monsterName = "Monster";
     const monsterimg = "https://www.smashbros.com/wiiu-3ds/images/character/pikachu/main.png"
     const mstr = 2
@@ -56,14 +86,15 @@ function BattleField({ user, setUser }) {
     } 
 
     const handleAttack = () => {
-        const newHp = mhp - user.total_str
+        const newHp = mhp - total_str
         return (setMhp(newHp))
     }
 
     const zeroHp = () => {  
         if (uhp <= 0){
-            alert("You lose.")
+            console.log("You lose.")
         } else if (mhp <= 0){
+            handleNewPower()
             handlePatch()
         } else {
             setTimeAtk()
@@ -79,7 +110,7 @@ function BattleField({ user, setUser }) {
                 <div className="row">
                     <div className="col ">
                     <h2>You</h2>
-                    <UserCard name={user.name} profile_img={user.profile_img} total_hp={uhp} total_str={user.total_str} powers={user.powers}/>
+                    <UserCard name={name} profile_img={profile_img} total_hp={uhp} total_str={total_str} powers={powers}/>
                     </div>
                     <div className="col align-self-start mt-5">
                         {!answerStatus ? 
@@ -91,7 +122,7 @@ function BattleField({ user, setUser }) {
                     </div>
                     <div className="col">
                     <h2>Opponent</h2>
-                    <UserCard name={monsterName} profile_img={monsterimg} total_hp={mhp} total_str={mstr} powers={user.powers}/>
+                    <UserCard name={monsterName} profile_img={monsterimg} total_hp={mhp} total_str={mstr} powers={powers}/>
                     </div>
                 </div>
             </div>

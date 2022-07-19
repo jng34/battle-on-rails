@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 function UserCard({ name, profile_img, total_hp, total_str, powers }) { 
   
   const powerData = powers && powers.length > 0 ? powers.map((power) => power.name).map((pow) => (

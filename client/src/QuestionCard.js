@@ -3,9 +3,9 @@ import questions from './questions.json'
 
 
 function QuestionCard({ answerStatus, setAnswerStatus, damage }) {
-    const [guess, setGuess] = useState(null)
+    const [guess, setGuess] = useState(5)
     const [question, setQuestion] = useState("")
-    const [correctAns, setCorrectAns] = useState(null)
+    const [correctAns, setCorrectAns] = useState(5)
     const [answerChoices, setAnswerChoices] = useState([])
 
 

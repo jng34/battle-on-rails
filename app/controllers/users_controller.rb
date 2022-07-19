@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        user = user.find(params[:id])
+        user = User.find(params[:id])
         user.destroy
-        render json: user, status: :ok
+        head :no_content
     end
 
 

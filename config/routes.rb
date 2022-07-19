@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :items, only: [:index]
   resources :powers
-  resources :users, only: [:index, :update, :destroy]
+  resources :users, only: [:index, :show, :update, :destroy]
 
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'

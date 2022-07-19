@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 function SignUpForm({ onSignUp }) {
@@ -36,7 +36,7 @@ function SignUpForm({ onSignUp }) {
                 setProfileImg("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/")
+                history.push("/profile")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }

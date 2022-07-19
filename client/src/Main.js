@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import cube from './cubeblock.png';
 
 
-function Main() {
+function Main({ user }) {
     const [counter, setCounter] = useState(0)
     const history = useHistory();
 
@@ -38,7 +38,7 @@ function Main() {
                 </div>
                 <br />
                 <div className='row'>
-                    <button type="button" className="btn btn-warning btn-lg fw-bold" onClick={() => history.push("/signup")}>
+                    <button type="button" className="btn btn-warning btn-lg fw-bold" onClick={() => user.name ? history.push("/battle") : history.push("/signup")}>
                         Fight back now!
                     </button>
                 </div>

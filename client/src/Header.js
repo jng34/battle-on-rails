@@ -1,4 +1,3 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from './bflogo2.png';
 
@@ -29,8 +28,7 @@ function Header({ user, setUser }) {
                     {user.name ? <></> : <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button>} &nbsp;
                     {user.name ? <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>
                     : <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>}
-                    {user.name ? 
-                    <p>Welcome, {user.name}! <br/></p> : <></>}
+                    {user.name ? <p>Welcome, {user.name}! <br/></p> : <></>}
                 </div>
             </div>
         </div>

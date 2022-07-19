@@ -1,9 +1,8 @@
-import { React, useState } from 'react';  
+import { useState } from 'react';  
 import { useHistory, Link } from 'react-router-dom';
-// import UserProfile from './UserProfile';
 
 
-function LoginForm({ user, onLogin }) {
+function LoginForm({ onLogin }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -32,14 +31,12 @@ function LoginForm({ user, onLogin }) {
             });
             setName("")
             setPassword("")
-            
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
         });
     }
   
-
     return (
       <div>
         <div className="card text-start border border-success" style={{width: "25rem", margin: "auto"}}>

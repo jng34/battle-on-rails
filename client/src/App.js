@@ -15,15 +15,14 @@ import battlefield from './battlefield.png';
 function App() {
   const [user, setUser] = useState({});
 
-    useEffect(() => {
-      fetch("/me").then((r) => {
-        if (r.ok) {
-          r.json().then((user) => setUser(user));
-        }
-      });
-    }, []);
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
-    // if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div id='bg' className="text-center" style={{ backgroundImage: `url(${battlefield})`}}>
@@ -32,7 +31,7 @@ function App() {
       <hr/>
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main user={user}/>
           </Route>
           <Route exact path="/battle">
             <BattleField user={user} setUser={setUser}/>
